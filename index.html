@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>Hello this is nfc scanner.</h1>
+        <script>
+            if ('NDEFReader' in window) {
+                const reader = new NDEFReader();
+
+                reader
+                    .scan()
+                    .then(() => {
+                        console.log('Scanning started');
+                        reader.onreading = (event) => {
+                            console.log('NDEF message read');
+                            const message = event.message;
+                            // Xử lý thông tin trích xuất từ thẻ NFC ở đây
+                            // Ví dụ: hiển thị dữ liệu thẻ NFC lên màn hình
+                            alert(
+                                `NFC message read: ${
+                                    message ? message : 'Hello world'
+                                }`,
+                            );
+                        };
+                    })
+                    .catch((error) => {
+                        console.log(`Error scanning NFC: ${error}`);
+                    });
+            } else {
+                console.log('NDEFReader not supported');
+            }
+        </script>
+    </body>
+</html>

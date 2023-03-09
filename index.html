@@ -44,7 +44,7 @@
                     return; // write pending, ignore read.
                 }
 
-                console.log("We read a tag, but not during pending write!");
+                alert("We read a tag, but not during pending write!");
             };
 
             function write(data) {
@@ -68,9 +68,9 @@
 
             try {
                 await write("Hello World");
-                console.log("We wrote to a tag!");
+                alert("We wrote to a tag!");
             } catch (err) {
-                console.error("Something went wrong", err);
+                alert("Something went wrong", err);
             }
         </script>
     </body>
